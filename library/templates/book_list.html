@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Books</title>
+  </head>
+  <body>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-decoration: none;
+        list-style: none;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      section{
+        margin: 100px 0;
+      }
+      .container{
+        margin: 0 auto;
+        max-width: 1400px;
+        padding: 0 5%;
+      }
+    </style>
+    <main>
+      <section>
+        <div class="container">
+          <ul>
+            {% for book in object_list %}
+            <ul>
+                <li><a href="#">{{book.title}}</a></li>
+                <li><p>{{book.subtitle}}</p></li>
+                <li><p>{{book.author}}</p></li>
+                <li><p>{{book.isbn}}</p></li>
+                <br>
+            </ul>
+            {% endfor %}
+          </ul>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
