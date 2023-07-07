@@ -1,13 +1,21 @@
-from .models import Task
-from rest_framework.views import APIView
+
+from rest_framework import generics 
 from rest_framework.response import Response
-from .serializers import TaskSerializer
+from .serializers import ToDoSerializer
+from .models import Todo
 
-
-
-class TaskViewSet(APIView):
-
-    def get(self, request, format=None):
-        tasks = Task.objects.all()
-        serializer = TaskSerializer(tasks, many=True)
-        return Response(serializer.data)
+class TodoListView(generics.ListAPIView):
+    queryset = Todo.objects.all()
+    serializer_class = ToDoSerializer
+    
+class DetailTodo(generics.RetrieveUpdateAPIView):
+    queryset = Todo.objects.all()
+    serializer_class = ToDoSerializer
+    
+class CreateTodo(generics.CreateAPIView):
+    queryset = Todo.objects.all()
+    serializer_class = ToDoSerializer
+    
+class DeleteTodo(generics.DestroyAPIView):
+    queryset = Todo.objects.all()
+    serializer_class = ToDoSerializer
