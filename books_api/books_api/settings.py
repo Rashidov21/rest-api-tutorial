@@ -38,15 +38,21 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_simplejwt',
     'books'
 ]
 
 REST_FRAMEWORK = {
- # Use Django's standard `django.contrib.auth` permissions,
- # or allow read-only access for unauthenticated users.
- 'DEFAULT_PERMISSION_CLASSES': [
- 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
- ]
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ]
+}
+APPEND_SLASH=False
+from datetime import timedelta
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
 
